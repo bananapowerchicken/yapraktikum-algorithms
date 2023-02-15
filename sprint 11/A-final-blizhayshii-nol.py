@@ -1,43 +1,29 @@
-# A - ближайший ноль, ID: 82282818
-n = int(input())                        # длина улицы
-data = list(map(int, input().split()))  # информация о домах
+# A - ближайший ноль, ID: 82369737
 
-zeros = []  # индексы нулей
-res = data
+def find_closest_zeros(n: int, data: list) -> list:
+    res = [n for _ in range(n)]
+    curr_zero_ind = -1
 
-for i in range(n):
-    if data[i] == 0:
-        zeros.append(i)
+    for i in range(n):
+        if data[i] == 0:
+            curr_zero_ind = i
+            res[i] = 0
+        elif curr_zero_ind > -1:
+            res[i] = res[i-1] + 1
 
+    for i in range(n-1, -1, -1):
+        if data[i] == 0:
+            curr_zero_ind = i
+        elif i < curr_zero_ind:
+            if curr_zero_ind - i <= res[i-1] or i == 0:
+                res[i] = res[i+1] + 1
 
-num_zeros = len(zeros)
-board_prev = -1
-if num_zeros == 1:
-    board_next = n-1
-else:
-    board_next = zeros[0] + (zeros[1] - zeros[0]) // 2
-
-for i in range(num_zeros):
-    prev = zeros[i] - 1
-    next = zeros[i] + 1
-
-    while prev > board_prev:
-        res[prev] = res[prev + 1] + 1
-        prev -= 1
-
-    while next <= board_next:
-        res[next] = res[next - 1] + 1
-        next += 1
-
-    if i == num_zeros-1:
-        break
-
-    board_prev = board_next
-
-    if i + 2 < num_zeros:
-        board_next = zeros[i+1] + (zeros[i+2] - zeros[i+1]) // 2
-    else:
-        board_next = n-1
+    return res
 
 
-print(" ".join(map(str, res)))
+if __name__ == '__main__':
+    n = int(input())                        # длина улицы
+    data = list(map(int, input().split()))  # информация о домах
+
+    res = find_closest_zeros(n, data)
+    print(*res)
