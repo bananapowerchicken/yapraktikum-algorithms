@@ -8,25 +8,22 @@
 # Разложение числа на простые множители называется факторизацией числа.
 
 # Напишите программу, которая производит факторизацию переданного числа.
-MIN_NUM = 2
-
 
 def factorizate(n):
-    res = [1]
-    max_num = n
-    curr_num = MIN_NUM
+    res = []
+    d = 2
 
-    while res[-1] <= max_num:
-        z, r = divmod(max_num, curr_num)
-        if not r:
-            max_num = z
-            res.append(curr_num)
-            curr_num = MIN_NUM
-
+    while d * d <= n:
+        if n % d == 0:
+            res.append(d)
+            n //= d
         else:
-            curr_num += 1
+            d += 1
 
-    return res[1::]
+    if n > 1:
+        res.append(n)
+
+    return res
 
 
 if __name__ == '__main__':
