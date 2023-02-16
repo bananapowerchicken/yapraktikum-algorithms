@@ -11,22 +11,24 @@
 # Выведите «True», если число является степенью четырёх, «False» –— в обратном
 # случае.
 
-x = int(input())
-res = ''
+MAX_INPUT = 10000
 
-if x == 1:
-    res = 'True'
-elif x == 0:
-    res = 'False'
-elif x < 4:
-    res = 'False'
-else:
-    while x > 1:
-        x = x >> 2
 
-    if x:
+def count_pow_four(n):
+    res = 'False'
+    pows_of_four = [1]
+
+    while pows_of_four[-1] * 4 < MAX_INPUT:
+        pows_of_four.append(pows_of_four[-1] * 4)
+
+    if n in pows_of_four:
         res = 'True'
-    else:
-        res = 'False'
 
-print(res)
+    return res
+
+
+if __name__ == '__main__':
+    n = int(input())
+    res = count_pow_four(n)
+
+    print(*res)
