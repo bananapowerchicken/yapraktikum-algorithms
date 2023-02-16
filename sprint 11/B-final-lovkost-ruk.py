@@ -1,20 +1,19 @@
-# B - ловкость рук, ID: 82383934
+# B - ловкость рук, ID: 82420893
 ROWS_AMOUNT = 4
 
 
 def count_points(s, k):
-    dict = {}
+    num_amount = {}
     finger_limit = k * 2
     res = 0
 
     for i in s:
         if i != '.':
-            if i not in dict:
-                dict.update({i: 1})
-            else:
-                dict[i] += 1
+            if i not in num_amount:
+                num_amount[i] = 0
+            num_amount[i] += 1
 
-    for val in dict.values():
+    for val in num_amount.values():
         if val <= finger_limit:
             res += 1
 
