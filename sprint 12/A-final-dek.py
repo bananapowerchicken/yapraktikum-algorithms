@@ -1,10 +1,4 @@
-# Гоша реализовал структуру данных Дек, максимальный размер которого
-# определяется заданным числом. Методы push_back(x), push_front(x),
-# pop_back(), pop_front() работали корректно. Но, если в деке было много
-# элементов, программа работала очень долго. Дело в том, что не все операции
-# выполнялись за O(1). Помогите Гоше! Напишите эффективную реализацию.
-
-# Внимание: при реализации используйте кольцевой буфер.
+# A - Дек, ID: 83201002
 
 class Deque:
     def __init__(self, n):
@@ -58,17 +52,6 @@ if __name__ == '__main__':
 
     d = Deque(max_buff_size)
 
-    # for i in range(num_commands):
-    #     s = input().split()
-    #     if s[0] == 'push_front':
-    #         d.push_front(s[1])
-    #     elif s[0] == 'push_back':
-    #         d.push_back(s[1])
-    #     elif s[0] == 'pop_front':
-    #         d.pop_front()
-    #     elif s[0] == 'pop_back':
-    #         d.pop_back()
-
     commands_dict = {
         'push_front': d.push_front,
         'push_back': d.push_back,
@@ -93,5 +76,3 @@ if __name__ == '__main__':
                     print(res)
             except IndexError:
                 print('error')
-    
-
