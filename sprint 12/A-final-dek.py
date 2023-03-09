@@ -14,36 +14,41 @@ class Deque:
     def push_front(self, item):
         if self.size == self.max_n:
             raise OverflowError
-        else:
-            self.buff[self.head - 1] = item
-            self.head = (self.head - 1) % self.max_n
-            self.size += 1
+        self.buff[self.head - 1] = item
+        self.head = (self.head - 1) % self.max_n
+        self.size += 1
 
     def push_back(self, item):
         if self.size == self.max_n:
-            raise OverflowError
-        else:
-            self.buff[self.tail] = item
-            self.tail = (self.tail + 1) % self.max_n
-            self.size += 1
+            raise OverflowError  #  на что можно заменить?
+
+        self.buff[self.tail] = item
+        self.tail = (self.tail + 1) % self.max_n
+        self.size += 1
 
     def pop_front(self):
         if self.is_empty():
             raise IndexError
-        else:
-            print(self.buff[self.head])
-            self.buff[self.head] = None
-            self.head = (self.head + 1) % self.max_n
-            self.size -= 1
+
+        res = self.buff[self.head]
+
+        self.buff[self.head] = None
+        self.head = (self.head + 1) % self.max_n
+        self.size -= 1
+
+        return res
 
     def pop_back(self):
         if self.is_empty():
             raise IndexError
-        else:
-            print(self.buff[self.tail-1])
-            self.buff[self.tail-1] = None
-            self.tail = (self.tail - 1) % self.max_n
-            self.size -= 1
+
+        res = self.buff[self.tail-1]
+
+        self.buff[self.tail-1] = None
+        self.tail = (self.tail - 1) % self.max_n
+        self.size -= 1
+
+        return res
 
 
 if __name__ == '__main__':
