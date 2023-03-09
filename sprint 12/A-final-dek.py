@@ -57,26 +57,28 @@ if __name__ == '__main__':
 
     d = Deque(max_buff_size)
 
-    commands_dict = {
-        'push_front': d.push_front,
-        'push_back': d.push_back,
-        'pop_front': d.pop_front,
-        'pop_back': d.pop_back,
-    }
+    # commands_dict = {
+    #     'push_front': d.push_front,
+    #     'push_back': d.push_back,
+    #     'pop_front': d.pop_front,
+    #     'pop_back': d.pop_back,
+    # }
 
     for _ in range(num_commands):
         command = input()
         operation, *val = command.split()
         if val:
             try:
-                res = commands_dict[operation](int(*val))
+                res = getattr(d, operation)(*val)
+                # res = commands_dict[operation](int(*val))
                 if res is not None:
                     print(res)
             except OverflowError:
                 print('error')
         else:
             try:
-                res = commands_dict[operation]()
+                res = getattr(d, operation)()
+                # res = commands_dict[operation]()
                 if res is not None:
                     print(res)
             except IndexError:
