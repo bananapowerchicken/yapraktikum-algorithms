@@ -64,7 +64,7 @@ if __name__ == '__main__':
             res = getattr(d, operation)(*val)
             if res is not None:
                 print(res)
-        except OverflowError:
+        except ValueError:
             print('error')
         except IndexError:
             print('error')
