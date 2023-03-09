@@ -13,7 +13,7 @@ class Deque:
 
     def push_front(self, item):
         if self.size == self.max_n:
-            raise ValueError('Deque is full')        
+            raise ValueError('Deque is full')
         self.buff[self.head - 1] = item
         self.head = (self.head - 1) % self.max_n
         self.size += 1

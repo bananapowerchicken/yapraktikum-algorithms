@@ -1,21 +1,23 @@
 # B - Калькулятор, ID: 83358943
+import operator
+
+operators = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.floordiv
+}
+
 
 def calculate(s):
     operands = []
-    operators = '+-/*'
+
     for item in s:
         if item not in operators:
             operands.append(int(item))
             res = item
         else:
-            if item == '+':
-                res = operands[-2] + operands[-1]   
-            if item == '-':
-                res = operands[-2] - operands[-1]
-            if item == '*':
-                res = operands[-2] * operands[-1]                
-            if item == '/':
-                res = operands[-2] // operands[-1]            
+            res = operators[item](operands[-2], operands[-1])
             operands.pop()
             operands.pop()
             operands.append(res)
