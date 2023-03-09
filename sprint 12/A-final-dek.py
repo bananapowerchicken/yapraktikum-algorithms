@@ -1,4 +1,4 @@
-# A - Дек, ID: 83201002
+# A - Дек, ID: 83660838
 
 class Deque:
     def __init__(self, n):
