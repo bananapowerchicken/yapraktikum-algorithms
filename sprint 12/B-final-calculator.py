@@ -1,7 +1,7 @@
-# B - Калькулятор, ID: 83680761
+# B - Калькулятор, ID: 83722382
 import operator
 
-operators = {
+OPERATORS = {
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul,
@@ -9,18 +9,33 @@ operators = {
 }
 
 
+class Stack_custom:
+    def __init__(self):
+        self.items = []
+
+    def push(self, elem):
+        ''' Добавление эл-та в стек '''
+        self.items.append(elem)
+
+    def pop(self):
+        ''' Удаление и вывод эл-та из стека'''
+        if len(self.items) == 0:
+            return ('error')
+        return self.items.pop()
+
+
 def calculate(s):
-    operands = []
+    operands = Stack_custom()
 
     for item in s:
-        if item not in operators:
-            operands.append(int(item))
+        if item not in OPERATORS:
+            operands.push(int(item))
             res = item
         else:
-            res = operators[item](operands[-2], operands[-1])
-            operands.pop()
-            operands.pop()
-            operands.append(res)
+            operand1 = operands.pop()
+            operand2 = operands.pop()
+            res = OPERATORS[item](operand2, operand1)
+            operands.push(res)
 
     print(res)
 
