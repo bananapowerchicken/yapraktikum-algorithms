@@ -1,4 +1,4 @@
-# B - Калькулятор, ID: 83358943
+# B - Калькулятор, ID: 83680761
 import operator
 
 operators = {

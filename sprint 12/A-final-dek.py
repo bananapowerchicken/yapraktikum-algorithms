@@ -1,4 +1,4 @@
-# A - Дек, ID: 83660838
+# A - Дек, ID: 83721648
 
 class Deque:
     def __init__(self, n):
@@ -64,7 +64,5 @@ if __name__ == '__main__':
             res = getattr(d, operation)(*val)
             if res is not None:
                 print(res)
-        except ValueError:
-            print('error')
-        except IndexError:
+        except (ValueError, IndexError):
             print('error')
